@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPTHA CONNECT | Student Community</title>
+    <meta name="description" content="Connect with fellow students at SAPTHAGIRI NPS UNIVERSITY.">
+
+    <style>
+        :root {
+            --bg: #090909;
+            --panel: #141414;
+            --gold: #d7ad52;
+            --gold-light: #f5d98d;
+            --text: #f6f3eb;
+            --muted: #a5a5a5;
+            --border: #34302a;
+            --danger: #ff7777;
+            --success: #8fe0a1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at top, #282012 0%, transparent 48%), var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 7%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(9, 9, 9, .92);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img,
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            object-fit: cover;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            color: var(--gold-light);
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .brand-name {
+            color: var(--gold-light);
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            font-size: 17px;
+        }
+
+        .brand-subtitle {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .nav-tag {
+            color: var(--gold-light);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 8px 13px;
+            font-size: 12px;
+        }
+
+        main {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 45px 0 70px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--gold-light);
+            border: 1px solid #5a4827;
+            background: #20190e;
+            border-radius: 30px;
+            padding: 8px 14px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            margin: 22px 0 12px;
+            font-size: clamp(35px, 6vw, 64px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            color: var(--gold-light);
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: auto;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 32px 0 40px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px;
+            background: rgba(20, 20, 20, .8);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+        }
+
+        .feature h3 {
+            margin: 8px 0 6px;
+            font-size: 15px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .auth-card,
+        .community-card {
+            width: 100%;
+            margin: 0 auto;
+            padding: 28px;
+            background: rgba(20, 20, 20, .96);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 18px 60px #0008;
+        }
+
+        .auth-card {
+            max-width: 560px;
+        }
+
+        .community-card {
+            max-width: 1100px;
+            margin-top: 35px;
+        }
+
+        h2 {
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
+
+        .muted {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 24px 0;
+            padding: 5px;
+            background: #090909;
+            border-radius: 12px;
+        }
+
+        .tab-button {
+            padding: 12px;
+            color: var(--muted);
+            background: transparent;
+            border: 0;
+            border-radius: 9px;
+        }
+
+        .tab-button.active {
+            background: #292115;
+            color: var(--gold-light);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e6dfd0;
+            font-size: 13px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #3b3832;
+            border-radius: 10px;
+            background: #0b0b0b;
+            color: var(--text);
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px #d7ad5218;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #777;
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 13px 18px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gold-light), #b88a32);
+            color: #171107;
+            font-weight: 800;
+            transition: transform .15s, opacity .15s;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .primary-button:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+
+        .message {
+            min-height: 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .message.error {
+            color: var(--danger);
+        }
+
+        .message.success {
+            color: var(--success);
+        }
+
+        /* Community header and profile */
+        .community-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .community-header .primary-button {
+            width: auto;
+            padding: 11px 16px;
+        }
+
+        .profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px 7px 7px;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            background: #151515;
+            min-width: 0;
+        }
+
+        .profile-avatar {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #3b2e17;
+            border: 1px solid var(--gold);
+        }
+
+        .profile-name {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .profile-email {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 3px;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-photo-label {
+            display: inline-block;
+            color: var(--gold-light);
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 7px;
+        }
+
+        .profile-photo-label input {
+            display: none;
+        }
+
+        /* Two-column dashboard */
+        .community-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .community-column {
+            min-width: 0;
+            padding: 20px;
+            background: #101010;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .section-title {
+            margin: 5px 0 16px;
+            font-size: 19px;
+        }
+
+        .search-input {
+            margin-bottom: 16px;
+        }
+
+        .student-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .student-item,
+        .student-card {
+            min-width: 0;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: #181818;
+            overflow-wrap: anywhere;
+        }
+
+        .student-item h4,
+        .student-card h4 {
+            margin: 0 0 8px;
+        }
+
+        .student-item p,
+        .student-card p {
+            margin: 5px 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .student-item .primary-button {
+            margin-top: 12px;
+        }
+
+        .empty-state {
+            padding: 22px;
+            border: 1px dashed #454039;
+            border-radius: 12px;
+            color: var(--muted);
+            text-align: center;
+            grid-column: 1 / -1;
+            line-height: 1.6;
+        }
+
+        /* Messages */
+        .chat-panel {
+            margin-top: 18px;
+            padding: 16px;
+            background: #0b0b0b;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .chat-panel h4 {
+            margin: 0 0 10px;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 12px 0;
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 11px 13px;
+            border-radius: 12px;
+            background: #222;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+        }
+
+        .chat-message.mine {
+            align-self: flex-end;
+            background: #3b2e17;
+            border: 1px solid #5b4825;
+        }
+
+        .chat-message small {
+            display: block;
+            color: #c2bba9;
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .chat-form input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .chat-form button {
+            width: auto;
+            min-width: 85px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 16px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        footer span {
+            color: var(--gold-light);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 700px) {
+            main {
+                padding-top: 32px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .community-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .community-header {
+                align-items: flex-start;
+            }
+
+            .community-header .primary-button {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .navbar {
+                padding: 14px 5%;
+            }
+
+            .brand-subtitle {
+                font-size: 9px;
+            }
+
+            .nav-tag {
+                display: none;
+            }
+
+            .auth-card,
+            .community-card {
+                padding: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .community-header {
+                flex-direction: column;
+            }
+
+            .profile-menu {
+                max-width: 100%;
+            }
+
+            .chat-form {
+                flex-direction: column;
+            }
+
+            .chat-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="brand">
+            <img src="logo.jpeg" alt="Saptha Verse logo"
+                onerror="this.style.display='none'; document.getElementById('brandFallback').hidden=false;">
+            <div class="brand-mark" id="brandFallback" hidden>SC</div>
+            <div>
+                <div class="brand-name">SAPTHA CONNECT</div>
+                <div class="brand-subtitle">A SAPTHAGIRI NPS UNIVERSITY COMMUNITY</div>
+            </div>
+        </div>
+        <div class="nav-tag">STUDENT NETWORK</div>
+    </header>
+
+    <main>
+        <section class="hero" id="heroSection">
+            <div class="eyebrow">WELCOME TO YOUR CAMPUS COMMUNITY</div>
+            <h1>One Campus.<br><span>Endless Connections.</span></h1>
+            <p>
+                Meet your classmates, discover students with similar interests,
+                and start conversations. Your campus connections begin here.
+            </p>
+        </section>
+
+        <section class="features" id="featuresSection">
+            <article class="feature">
+                <div class="feature-icon">🤝</div>
+                <div>
+                    <h3>Meet Students</h3>
+                    <p>Discover students across branches and semesters.</p>
+                </div>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">💬</div>
+                <div>
+                    <h3>Chat Directly</h3>
+                    <p>Start a conversation with a registered student.</p>
+                </div>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">🎓</div>
+                <div>
+                    <h3>Campus Community</h3>
+                    <p>Connect with people who share your interests.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Registration and login -->
+        <section class="auth-card" id="authSection">
+            <h2>Join the community</h2>
+            <p class="muted">Create your student account or log in to continue.</p>
+
+            <div class="tabs">
+                <button type="button" id="registerTab" class="tab-button active" aria-selected="true">
+                    Create account
+                </button>
+                <button type="button" id="loginTab" class="tab-button" aria-selected="false">
+                    Log in
+                </button>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                            autocomplete="name" required>
+                    </div>
+
+                    <div class="field full">
+                        <label for="registerEmail">University email</label>
+                        <input type="email" id="registerEmail" name="email" placeholder="you@example.com"
+                            autocomplete="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="branch">Branch</label>
+                        <select id="branch" name="branch" required>
+                            <option value="">Choose branch</option>
+                            <option value="CSE AIML">CSE - AIML</option>
+                            <option value="CSE">Computer Science (CSE)</option>
+                            <option value="ISE">Information Science (ISE)</option>
+                            <option value="ECE">Electronics (ECE)</option>
+                            <option value="EEE">Electrical (EEE)</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="semester">Semester</label>
+                        <select id="semester" name="semester" required>
+                            <option value="">Choose semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="interests">Interests</label>
+                        <input type="text" id="interests" name="interests"
+                            placeholder="Coding, anime, cricket, music...">
+                    </div>
+
+                    <div class="field full">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" name="password"
+                            placeholder="Create a password (minimum 8 characters)" autocomplete="new-password"
+                            minlength="8" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="registerButton" class="primary-button">
+                    Create my account
+                </button>
+                <p id="registerMessage" class="message" role="status"></p>
+            </form>
+
+            <form id="loginForm" hidden>
+                <div class="field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="email" placeholder="Enter your registered email"
+                        autocomplete="email" required>
+                </div>
+
+                <div class="field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" id="loginButton" class="primary-button">
+                    Log in to SAPTHA CONNECT
+                </button>
+                <p id="loginMessage" class="message" role="status"></p>
+            </form>
+        </section>
+
+        <!-- Community dashboard -->
+        <section id="communitySection" class="community-card" hidden>
+            <div class="community-header">
+                <div>
+                    <h2>Campus Community</h2>
+                    <p class="muted">Your university. Your people.</p>
+                </div>
+
+                <div class="profile-menu">
+                    <img id="profileAvatar" class="profile-avatar"
+                        src="https://placehold.co/100x100/242016/D4AF37?text=SC" alt="Profile picture">
+
+                    <div>
+                        <div id="profileName" class="profile-name">Student</div>
+                        <div id="profileEmail" class="profile-email"></div>
+                        <label class="profile-photo-label">
+                            Change photo
+                            <input type="file" id="profilePhotoInput" accept="image/*">
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" id="logoutButton" class="primary-button">
+                    Log out
+                </button>
+            </div>
+
+            <div class="community-layout">
+                <!-- Student directory -->
+                <div class="community-column">
+                    <h3 class="section-title">Find Students</h3>
+                    <input type="search" id="studentSearch" class="search-input"
+                        placeholder="Search name, branch or interests" aria-label="Search registered students">
+
+                    <div id="studentList" class="student-list">
+                        <div class="empty-state">Loading students...</div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="community-column">
+                    <h3 class="section-title">Messages</h3>
+                    <p class="muted">Choose a student to start chatting.</p>
+
+                    <div id="messagePanel" class="chat-panel" hidden>
+                        <h4 id="messageRecipient">Chat</h4>
+                        <div id="messageList" class="chat-messages"></div>
+
+                        <form id="messageForm" class="chat-form">
+                            <input type="text" id="messageInput" placeholder="Type your message..." maxlength="2000"
+                                autocomplete="off" required>
+                            <button type="submit" class="primary-button">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <p id="communityMessage" class="message" role="status"></p>
+        </section>
+    </main>
+
+    <footer>
+        <div><span>SAPTHA CONNECT</span> · One Campus. Endless Connections.</div>
+        <div>Made for students of SAPTHAGIRI NPS UNIVERSITY, Bangalore.</div>
+        <div>Community project by Saptha Verse · @saptha_verse07</div>
+    </footer>
+
+    <!-- Keep application logic in script.js -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>
